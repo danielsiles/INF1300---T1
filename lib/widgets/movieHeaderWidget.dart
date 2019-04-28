@@ -22,24 +22,32 @@ class MovieHeader extends StatelessWidget {
                     left: 16.0,
                     right: 16.0,
                     child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                             Poster(
                                 "http://image.tmdb.org/t/p/w185/" + data["poster_path"],
                                 height: 180.0,
                             ),
                             SizedBox(width: 16.0),
-                            Expanded(child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                    Text(
-                                        data["title"],
-                                    ),
-                                    SizedBox(height: 8.0),
-                                    SizedBox(height: 12.0),
-                                ],
-                            ),)
+
+                            Expanded(
+                                child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                        SizedBox(height: 60.0),
+                                        Text(
+                                            data["title"],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20
+                                            ),
+                                        ),
+                                        SizedBox(height: 8.0),
+                                        SizedBox(height: 12.0),
+                                    ],
+                                ),
+                            )
                         ],
                     ),
                 ),

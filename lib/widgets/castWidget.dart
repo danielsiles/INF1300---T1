@@ -1,46 +1,56 @@
 import 'package:flutter/material.dart';
+import '../views/personDetails.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
 class Cast extends StatelessWidget {
-    Cast(String imageUrl, String name) {
-        this.imageUrl = imageUrl;
-        this.name = name;
+    Cast(Map<String, dynamic> data) {
+        this.data = data;
     }
 
-    String imageUrl;
-    String name;
+    Map<String, dynamic> data;
+    String imgUrl;
 
     @override
     Widget build(BuildContext context) {
 
         String imgUrl = "https://i.stack.imgur.com/34AD2.jpg";
-        if(this.imageUrl != null) {
-            imgUrl = "http://image.tmdb.org/t/p/w500" + this.imageUrl;
+        if(this.data['profile_path'] != null) {
+            imgUrl = "http://image.tmdb.org/t/p/w500" + this.data['profile_path'];
         }
 
-        return Container(
-            padding: EdgeInsets.all(10.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+        return GestureDetector(
+                onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PersonDetails(data)));
+            },
+            child: Container(
+                padding: EdgeInsets.only( right: 15),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
 
-                children: <Widget>[
-                    Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: new BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: new NetworkImage(
-                                    imgUrl)
+                    children: <Widget>[
+                        Container(
+                            width: 60.0,
+                            height: 60.0,
+                            decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+
+                                image: new DecorationImage(
+
+                                    fit: BoxFit.fill,
+                                    image: new NetworkImage(
+                                        imgUrl)
+                                )
                             )
-                        )),
-                    Text(this.name,
-                        textScaleFactor: 1.0)
-                ],
+                        ),
+                        Text(this.data['name'],
+                            textScaleFactor: 1.0)
+                    ],
+                )
             )
         );
     }

@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import "movieDetails.dart";
+import 'personDetails.dart';
 
 Future<Element> fetchPost(String query) async {
     final response = await http.get('https://api.themoviedb.org/3/search/multi?api_key=d7b753a5e3600c4cedca32ba02944de3&language=en-US&query=' + query + '&include_adult=false');
@@ -122,7 +123,7 @@ class CustomSearchDelegate extends SearchDelegate {
                                         onTap: () => {
                                             Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => MovieDetails(data)))
+                                            MaterialPageRoute(builder: (context) => PersonDetails(data)))
                                         }
                                     );
                                 }

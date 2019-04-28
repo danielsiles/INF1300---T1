@@ -1,49 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'dart:convert';
+import '../views/movieDetails.dart';
 
 class MovieRelated extends StatelessWidget {
-    MovieRelated(String imageUrl, String name) {
-        this.imageUrl = imageUrl;
-        this.name = name;
+    MovieRelated(Map<String, dynamic> data) {
+        this.data = data;
     }
 
-    String imageUrl;
-    String name;
+    Map<String, dynamic> data;
 
     @override
     Widget build(BuildContext context) {
 
         String imgUrl = "https://i.stack.imgur.com/34AD2.jpg";
-        if(this.imageUrl != null) {
-            imgUrl = "http://image.tmdb.org/t/p/w500" + this.imageUrl;
+        if(this.data["poster_path"] != null) {
+            imgUrl = "http://image.tmdb.org/t/p/w500" + this.data["poster_path"];
         }
 
-        return Container(
-            width: 100.0,
-            padding: EdgeInsets.all(5.0),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+        return GestureDetector(
+            onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MovieDetails(data)));
+            },
+            child: Container(
+                width: 120.0,
+                padding: EdgeInsets.only(right: 10, top: 10),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
 
-                children: <Widget>[
-                    Container(
-                        width: 100.0,
-                        height: 120.0,
-                        decoration: new BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(8.0),
-                            image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: new NetworkImage(
-                                    imgUrl)
-                            )
-                        )),
-                    Text(this.name,
-                        textScaleFactor: 1.0)
-                ],
-            )
+                    children: <Widget>[
+                        Container(
+                            width: 120.0,
+                            height: 150.0,
+                            decoration: new BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(8.0),
+                                image: new DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: new NetworkImage(
+                                        imgUrl)
+                                )
+                            )),
+                        Text(this.data["original_title"],
+                            textScaleFactor: 1.0)
+                    ],
+                )
+            ),
         );
     }
 }

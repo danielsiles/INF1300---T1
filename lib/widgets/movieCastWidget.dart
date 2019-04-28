@@ -40,42 +40,50 @@ class MovieCast extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Column(
+        return Container(
+            padding: EdgeInsets.only(left: 15),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                    Text(
+                        "Cast",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16
+                        ),
+                    ),
+                    FutureBuilder<Element>(
+                        future: element,
+                        builder: (context, snapshot) {
+                            debugPrint(snapshot.toString());
+                            if (snapshot.hasData) {
+                                return ConstrainedBox(
+                                    constraints: new BoxConstraints(
+                                        minHeight: 35.0,
+                                        maxHeight: 120.0,
+                                    ),
+                                    child:  ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true, //just set this property
+                                        itemBuilder: (_, int index) => Cast(
+                                            snapshot.data.results[index],
+                                        ),
+                                        itemCount: snapshot.data.results.length,
 
-            children: <Widget>[
-                Text("Cast"),
-                FutureBuilder<Element>(
-                    future: element,
-                    builder: (context, snapshot) {
-                        debugPrint(snapshot.toString());
-                        if (snapshot.hasData) {
-                            return ConstrainedBox(
-                                constraints: new BoxConstraints(
-                                  minHeight: 35.0,
-                                  maxHeight: 160.0,
-                                ),
-                                child:  ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true, //just set this property
-                                padding: new EdgeInsets.all(8.0),
-                                itemBuilder: (_, int index) => Cast(
-                                  snapshot.data.results[index]["profile_path"],
-                                  snapshot.data.results[index]["name"],
-                                ),
-                                itemCount: snapshot.data.results.length,
-
-                            ));
+                                    ));
 //                        return
-                        } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                        }
+                            } else if (snapshot.hasError) {
+                                return Text("${snapshot.error}");
+                            }
 
-                        return CircularProgressIndicator();
-                    },
-                ),
+                            return CircularProgressIndicator();
+                        },
+                    ),
 
 
-            ],
+                ],
+            )
         );
     }
 }

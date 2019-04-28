@@ -40,42 +40,51 @@ class RelatedMovies extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Column(
-
-            children: <Widget>[
-                Text("Related movies"),
-                FutureBuilder<Element>(
-                    future: element,
-                    builder: (context, snapshot) {
-                        debugPrint(snapshot.toString());
-                        if (snapshot.hasData) {
-                            return ConstrainedBox(
-                                constraints: new BoxConstraints(
-                                    minHeight: 35.0,
-                                    maxHeight: 210.0,
-                                ),
-                                child:  ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true, //just set this property
-                                    padding: new EdgeInsets.all(8.0),
-                                    itemBuilder: (_, int index) => MovieRelated(
-                                        snapshot.data.results[index]["poster_path"],
-                                        snapshot.data.results[index]["original_title"],
+        return Container(
+            padding: EdgeInsets.only(left: 15, bottom: 10),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                    Text(
+                        "Related movies",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16
+                        ),
+                    ),
+                    FutureBuilder<Element>(
+                        future: element,
+                        builder: (context, snapshot) {
+                            debugPrint(snapshot.toString());
+                            if (snapshot.hasData) {
+                                debugPrint(snapshot.data.results[0].toString());
+                                return ConstrainedBox(
+                                    constraints: new BoxConstraints(
+                                        minHeight: 35.0,
+                                        maxHeight: 210.0,
                                     ),
-                                    itemCount: snapshot.data.results.length,
+                                    child:  ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true, //just set this property
+                                        itemBuilder: (_, int index) => MovieRelated(
+                                            snapshot.data.results[index],
+                                        ),
+                                        itemCount: snapshot.data.results.length,
 
-                                ));
+                                    ));
 //                        return
-                        } else if (snapshot.hasError) {
-                            return Text("${snapshot.error}");
-                        }
+                            } else if (snapshot.hasError) {
+                                return Text("${snapshot.error}");
+                            }
 
-                        return CircularProgressIndicator();
-                    },
-                ),
+                            return CircularProgressIndicator();
+                        },
+                    ),
 
 
-            ],
+                ],
+            ),
         );
     }
 }

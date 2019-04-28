@@ -41,30 +41,47 @@ class MovieReviews extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
 
-        return Column(
-
-            children: <Widget>[
-                Text("Reviews"),
+        return
                 FutureBuilder<Element>(
                     future: element,
                     builder: (context, snapshot) {
                         debugPrint(snapshot.toString());
                         if (snapshot.hasData) {
-                            return Container(child: Column(children: snapshot.data.results.map((element) => MovieReview(
-                                element["author"],
-                                element["content"],
-                            )).toList()));
-
+                            if(snapshot.data.results.length > 0) {
+                                return Column(
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: <Widget>[
+                                        Text(
+                                            "Reviews",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16
+                                            ),
+                                        ),
+                                        Container(child:
+                                        Column(children:
+                                        snapshot.data.results.map((element) =>
+                                            MovieReview(
+                                                element["author"],
+                                                element["content"],
+                                            )).toList()))
+                                    ],
+                                );
+                            }
+                            else {
+                                return Container();
+                            }
                         } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");
                         }
 
                         return CircularProgressIndicator();
                     },
-                ),
+                );
 
 
-            ],
-        );
+
     }
 }

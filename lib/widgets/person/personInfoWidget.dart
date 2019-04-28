@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MovieInfo extends StatelessWidget {
-    MovieInfo(Map<String, dynamic> data) {
+class PersonInfo extends StatelessWidget {
+    PersonInfo(Map<String, dynamic> data) {
         this.data = data;
     }
 
@@ -17,12 +17,12 @@ class MovieInfo extends StatelessWidget {
                 children: <Widget>[
                     Container(
                         padding: EdgeInsets.only(bottom: 10),
-                        child: Text("Story Line", style: TextStyle(
+                        child: Text("Biography", style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16
                         )),
                     ),
-                    Text(data["overview"])
+                    Text(data["biography"])
                 ],
             ),
         );
