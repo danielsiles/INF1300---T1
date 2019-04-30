@@ -20,7 +20,7 @@ class MovieDetails extends StatelessWidget {
             ),
             body: ListView(
                     children: <Widget>[
-                        MovieHeader(data),
+                        MovieHeader(data, data["title"]),
                         MovieInfo(data),
                         MovieCast(data),
                         RelatedMovies(data),

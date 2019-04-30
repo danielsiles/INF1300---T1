@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import "customSearchDelegate.dart";
+import 'trendingMovies.dart';
+import 'trendingTvShows.dart';
+import 'trendingPersons.dart';
 class Categories extends StatefulWidget {
     Categories({ Key key }) : super(key: key);
     @override
@@ -42,9 +45,9 @@ class _SearchListState extends State<Categories>
                 appBar: this.buildBar(context),
                 body: TabBarView(
                     children: [
-                        Text("Filmes"),
-                        Text("Séries"),
-                        Text("Pessoas"),
+                        TrendingMovies(),
+                        TrendingTvShows(),
+                        TrendingPersons(),
                     ],
                 ),
             ),
@@ -55,9 +58,9 @@ class _SearchListState extends State<Categories>
         return new AppBar(
             bottom: TabBar(
                 tabs: [
-                    Tab(icon: Icon(Icons.directions_car)),
-                    Tab(icon: Icon(Icons.directions_transit)),
-                    Tab(icon: Icon(Icons.directions_bike)),
+                    Tab(child: Text("Filmes")),
+                    Tab(child: Text("Séries")),
+                    Tab(child: Text("Pessoas")),
                 ],
             ),
             centerTitle: true,

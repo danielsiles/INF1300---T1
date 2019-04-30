@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import '../views/movieDetails.dart';
-import '../views/tvDetails.dart';
+import '../../views/movieDetails.dart';
+import '../../views/tvDetails.dart';
+import '../../views/personDetails.dart';
 
-class MovieRelated extends StatelessWidget {
-    MovieRelated(Map<String, dynamic> data, String type) {
+class CategoryImage extends StatelessWidget {
+    CategoryImage(Map<String, dynamic> data, String imgPath, String name, String type) {
         this.data = data;
+        this.imgPath = imgPath;
         this.type = type;
+        this.name = name;
     }
 
     Map<String, dynamic> data;
+    String imgPath;
     String type;
+    String name;
 
     @override
     Widget build(BuildContext context) {
 
         String imgUrl = "https://i.stack.imgur.com/34AD2.jpg";
-        if(this.data["poster_path"] != null) {
-            imgUrl = "http://image.tmdb.org/t/p/w500" + this.data["poster_path"];
+        if(this.imgPath != null) {
+            imgUrl = "http://image.tmdb.org/t/p/w500" + imgPath;
         }
 
         return GestureDetector(
@@ -30,10 +35,13 @@ class MovieRelated extends StatelessWidget {
                         else if(type == "tv") {
                             return TvDetails(data);
                         }
+                        else if(type == "person") {
+                            return PersonDetails(data);
+                        }
                     }));
             },
             child: Container(
-                width: 120.0,
+                width: 180.0,
                 padding: EdgeInsets.only(right: 10, top: 10),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +49,8 @@ class MovieRelated extends StatelessWidget {
 
                     children: <Widget>[
                         Container(
-                            width: 120.0,
-                            height: 150.0,
+                            width: 180.0,
+                            height: 180.0,
                             decoration: new BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(8.0),
@@ -52,7 +60,7 @@ class MovieRelated extends StatelessWidget {
                                         imgUrl)
                                 )
                             )),
-                        Text(this.data["name"],
+                        Text(this.name,
                             textScaleFactor: 1.0)
                     ],
                 )

@@ -3,14 +3,17 @@ import '../widgets/coverImageWidget.dart';
 import '../widgets/posterWidget.dart';
 
 class MovieHeader extends StatelessWidget {
-    MovieHeader(Map<String, dynamic> data) {
+    MovieHeader(Map<String, dynamic> data, String title) {
         this.data = data;
+        this.title = title;
     }
 
     Map<String, dynamic> data;
+    String title;
 
     @override
     Widget build(BuildContext context) {
+        debugPrint("TESTE1");
         return Stack(
             children: [
                 Padding(
@@ -37,7 +40,7 @@ class MovieHeader extends StatelessWidget {
                                     children: [
                                         SizedBox(height: 60.0),
                                         Text(
-                                            data["title"],
+                                            this.title,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20

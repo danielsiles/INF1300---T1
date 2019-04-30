@@ -9,6 +9,7 @@ class MovieInfo extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
+
         return Container(
             padding: EdgeInsets.all(15),
             child: Column(

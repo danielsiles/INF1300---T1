@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'movieRelatedWidget.dart';
+import 'package:http/http.dart' as http;
+import '../movieRelatedWidget.dart';
+import 'dart:async';
+import 'dart:convert';
 
-class CombinedRelated extends StatelessWidget {
-    CombinedRelated(List<dynamic> data) {
+
+class RelatedMedias extends StatelessWidget {
+    RelatedMedias(List<dynamic> data) {
         this.data = data;
     }
 
@@ -17,7 +21,7 @@ class CombinedRelated extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                     Text(
-                        "Related movies",
+                        "Related",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16
@@ -33,12 +37,13 @@ class CombinedRelated extends StatelessWidget {
                             shrinkWrap: true, //just set this property
                             itemBuilder: (_, int index) => MovieRelated(
                                 data[index],
-                                data[index]['media_type']
+                                'tv'
                             ),
                             itemCount: data.length,
 
                         )
                     )
+
 
                 ],
             ),
