@@ -5,12 +5,14 @@ import 'dart:async';
 import 'dart:convert';
 
 class Cast extends StatelessWidget {
-    Cast(Map<String, dynamic> data) {
+    Cast(Map<String, dynamic> data, {bool isCast = true}) {
         this.data = data;
+        this.isCast = isCast;
     }
 
     Map<String, dynamic> data;
     String imgUrl;
+    bool isCast;
 
     @override
     Widget build(BuildContext context) {
@@ -21,10 +23,13 @@ class Cast extends StatelessWidget {
         }
 
         return GestureDetector(
-                onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PersonDetails(data)));
+            onTap: () {
+                if(this.isCast) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PersonDetails(data)));
+                }
             },
             child: Container(
                 padding: EdgeInsets.only( right: 15),

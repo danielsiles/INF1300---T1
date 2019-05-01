@@ -26,7 +26,7 @@ class CombinedRelated extends StatelessWidget {
                     ConstrainedBox(
                         constraints: new BoxConstraints(
                             minHeight: 35.0,
-                            maxHeight: 210.0,
+                            maxHeight: 250.0,
                         ),
                         child:  ListView.builder(
                             scrollDirection: Axis.horizontal,

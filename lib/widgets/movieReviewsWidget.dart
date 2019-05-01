@@ -42,7 +42,9 @@ class MovieReviews extends StatelessWidget {
     Widget build(BuildContext context) {
 
         return
-                FutureBuilder<Element>(
+        Container (
+            padding: EdgeInsets.only(left: 15),
+                child: FutureBuilder<Element>(
                     future: element,
                     builder: (context, snapshot) {
                         debugPrint(snapshot.toString());
@@ -79,8 +81,8 @@ class MovieReviews extends StatelessWidget {
 
                         return CircularProgressIndicator();
                     },
-                );
-
+                )
+        );
 
 
     }

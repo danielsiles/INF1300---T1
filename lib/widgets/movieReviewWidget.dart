@@ -21,8 +21,8 @@ class MovieReview extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
 
                 children: <Widget>[
-                    Text(this.author,textScaleFactor: 1.2),
-                    Text(this.content)
+                    Text("Author: " + this.author,textScaleFactor: 1.2, style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text(this.content, style: TextStyle(fontStyle: FontStyle.italic))
                 ],
             )
         );

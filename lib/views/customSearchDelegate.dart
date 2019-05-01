@@ -93,7 +93,7 @@ class CustomSearchDelegate extends SearchDelegate {
                                 if(data["media_type"] == "movie") {
                                     return ListTile(
                                         title: Text(data["original_title"]),
-                                        subtitle: Text(data["release_date"].substring(0, 4)),
+                                        subtitle: Text(data["release_date"] != "" ? data["release_date"].substring(0, 4) : ""),
                                         enabled: true,
                                         onTap: () => {
                                             Navigator.push(
@@ -105,9 +105,7 @@ class CustomSearchDelegate extends SearchDelegate {
                                 else if(data["media_type"] == "tv") {
                                     return ListTile(
                                         title: Text(data["original_name"]),
-                                        subtitle: Text(
-                                        data["first_air_date"].substring(
-                                        0, 4)),
+                                        subtitle: Text(data["first_air_date"] != "" ? data["first_air_date"].substring(0, 4) : ""),
                                         enabled: true,
                                         onTap: () => {
                                             Navigator.push(
@@ -142,44 +140,7 @@ class CustomSearchDelegate extends SearchDelegate {
             ),
         );
 
-//            return Column(
-//            children: <Widget>[
-//                //Build the results based on the searchResults stream in the searchBloc
-//                StreamBuilder(
-//                    stream: InheritedBlocs.of(context).searchBloc.searchResults,
-//                    builder: (context, AsyncSnapshot<List<Result>> snapshot) {
-//                        if (!snapshot.hasData) {
-//                            return Column(
-//                                crossAxisAlignment: CrossAxisAlignment.center,
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                children: <Widget>[
-//                                    Center(child: CircularProgressIndicator()),
-//                                ],
-//                            );
-//                        } else if (snapshot.data.length == 0) {
-//                            return Column(
-//                                children: <Widget>[
-//                                    Text(
-//                                        "No Results Found.",
-//                                    ),
-//                                ],
-//                            );
-//                        } else {
-//                            var results = snapshot.data;
-//                            return ListView.builder(
-//                                itemCount: results.length,
-//                                itemBuilder: (context, index) {
-//                                    var result = results[index];
-//                                    return ListTile(
-//                                        title: Text(result.title),
-//                                    );
-//                                },
-//                            );
-//                        }
-//                    },
-//                ),
-//            ],
-//        );
+//
     }
 
     @override

@@ -38,6 +38,7 @@ class TvCast extends StatelessWidget {
                             shrinkWrap: true, //just set this property
                             itemBuilder: (_, int index) => Cast(
                                 data[index],
+                                isCast: type != "Creators"
                             ),
                             itemCount: data.length,
 

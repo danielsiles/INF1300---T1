@@ -13,10 +13,16 @@ class MovieRelated extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-
+        String name = "";
         String imgUrl = "https://i.stack.imgur.com/34AD2.jpg";
         if(this.data["poster_path"] != null) {
             imgUrl = "http://image.tmdb.org/t/p/w500" + this.data["poster_path"];
+        }
+        if(type == "movie") {
+            name = data["title"];
+        }
+        else if(type == "tv") {
+            name = data["name"];
         }
 
         return GestureDetector(
@@ -52,7 +58,7 @@ class MovieRelated extends StatelessWidget {
                                         imgUrl)
                                 )
                             )),
-                        Text(this.data["name"],
+                        Text(name,
                             textScaleFactor: 1.0)
                     ],
                 )
