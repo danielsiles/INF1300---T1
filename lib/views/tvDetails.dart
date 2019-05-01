@@ -8,6 +8,7 @@ import 'dart:convert';
 import '../widgets/tv/tvCastWidget.dart';
 import '../widgets/tv/tvVideos.dart';
 import '../widgets/tv/tvRelated.dart';
+import '../widgets/CinfoLoader.dart';
 
 
 Future<Element> fetchPost(int query) async {
@@ -123,7 +124,7 @@ class TvDetails extends StatelessWidget {
                                             return Text("${snapshot.error}");
                                         }
 
-                                        return CircularProgressIndicator();
+                                        return CinfoLoader();
                                     },
                                 ),
                                 FutureBuilder<Element>(
@@ -139,7 +140,7 @@ class TvDetails extends StatelessWidget {
                                             return Text("${snapshot.error}");
                                         }
 
-                                        return CircularProgressIndicator();
+                                        return CinfoLoader();
                                     },
                                 )
                             ],
@@ -149,7 +150,7 @@ class TvDetails extends StatelessWidget {
                         return Text("${snapshot.error}");
                     }
 
-                    return CircularProgressIndicator();
+                    return CinfoLoader();
                 },
             ),
         );

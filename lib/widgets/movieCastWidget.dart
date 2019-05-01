@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'castWidget.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'CinfoLoader.dart';
 
 Future<Element> fetchPost(int query) async {
     final response = await http.get('https://api.themoviedb.org/3/movie/' + query.toString() + '/credits?api_key=d7b753a5e3600c4cedca32ba02944de3');
@@ -77,7 +78,7 @@ class MovieCast extends StatelessWidget {
                                 return Text("${snapshot.error}");
                             }
 
-                            return CircularProgressIndicator();
+                            return CinfoLoader();
                         },
                     ),
 

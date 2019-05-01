@@ -3,6 +3,7 @@ import '../widgets/category/categoryImageWidget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import '../widgets/CinfoLoader.dart';
 
 
 Future<Element> fetchPost() async {
@@ -67,7 +68,7 @@ class TrendingTvShows extends StatelessWidget {
                             return Text("${snapshot.error}");
                         }
 
-                        return CircularProgressIndicator();
+                        return CinfoLoader();
                     },
                 ),
 

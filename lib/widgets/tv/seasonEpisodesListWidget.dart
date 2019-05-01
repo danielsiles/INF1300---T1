@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-import '../movieReviewWidget.dart';
+import '../CinfoLoader.dart';
 import 'tvEpisodeWidget.dart';
 
 Future<Element> fetchPost(int tvId, int season) async {
@@ -81,7 +81,7 @@ class SeasonEpisodesList extends StatelessWidget {
                                 return Text("${snapshot.error}");
                             }
 
-                            return CircularProgressIndicator();
+                            return CinfoLoader();
                         },
                     ),
 

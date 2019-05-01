@@ -5,6 +5,7 @@ import '../widgets/combinedRelatedWidget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+import '../widgets/CinfoLoader.dart';
 
 Future<Element> fetchPost(int query) async {
     final response = await http.get('https://api.themoviedb.org/3/person/' + query.toString() + '?api_key=d7b753a5e3600c4cedca32ba02944de3&language=en-US');
@@ -84,7 +85,7 @@ class PersonDetails extends StatelessWidget {
                                                 return Text("${snapshot.error}");
                                             }
 
-                                            return CircularProgressIndicator();
+                                            return CinfoLoader();
                                         },
                                     ),
                                 ],
@@ -94,7 +95,7 @@ class PersonDetails extends StatelessWidget {
                             return Text("${snapshot.error}");
                         }
 
-                        return CircularProgressIndicator();
+                        return CinfoLoader();
                     },
                 ),
         );

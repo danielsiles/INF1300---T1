@@ -3,7 +3,7 @@ import '../widgets/category/categoryImageWidget.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
-
+import '../widgets/CinfoLoader.dart';
 
 Future<Element> fetchPost() async {
     final response = await http.get('https://api.themoviedb.org/3/trending/movie/week?api_key=d7b753a5e3600c4cedca32ba02944de3&language=en-US');
@@ -67,7 +67,7 @@ class TrendingMovies extends StatelessWidget {
                             return Text("${snapshot.error}");
                         }
 
-                        return CircularProgressIndicator();
+                        return CinfoLoader();
                     },
                 ),
 
